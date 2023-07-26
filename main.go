@@ -1,9 +1,9 @@
 package main
 
-import (
-	"fmt"
-)
-
 func main() {
-	fmt.Println("Hello World !!")
+	config := config.GetConfig()
+
+	app := &app.App{}
+	app.Initialize(config)
+	app.Run(":3000")
 }

@@ -3,6 +3,7 @@ package app
 import (
 	"fmt"
 	"log"
+	"net/http"
 
 	"github.com/gorilla/mux"
 	model "github.com/hashi7412/restfulapi-with-gorm-and-gorillamux/api/app"
@@ -32,4 +33,12 @@ func (a *App) Initialize(config *config.Config) {
 	a.DB = model.DBMigrate(db)
 	a.Router = mux.NewRouter()
 	a.setRouters()
+}
+
+func (a *App) setRouters() {
+	a.Get("/employees", a.GetAllEmployees)
+}
+
+func (a *App) Put(path string, f func(w http.ResponseWriter, r *http.Request)) {
+	a.Router.HandleFunc(path, f).Methods("PUT")
 }

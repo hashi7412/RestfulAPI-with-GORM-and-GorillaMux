@@ -6,7 +6,6 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	model "github.com/hashi7412/restfulapi-with-gorm-and-gorillamux/api/app"
 	"github.com/jinzhu/gorm"
 	"honnef.co/go/tools/config"
 )

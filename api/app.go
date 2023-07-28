@@ -37,6 +37,12 @@ func (a *App) Initialize(config *config.Config) {
 
 func (a *App) setRouters() {
 	a.Get("/employees", a.GetAllEmployees)
+	a.Post("/employees", a.CreateEmployee)
+	a.Get("/employees/{title}", a.GetEmployee)
+	a.Put("/employees/{title}", a.UpdateEmployee)
+	a.Delete("/employees/{title}", a.DeleteEmployee)
+	a.Put("/employees/{title}/disable", a.DisableEmployee)
+	a.Put("/employees/{title}/enable", a.EnableEmployee)
 }
 
 func (a *App) Put(path string, f func(w http.ResponseWriter, r *http.Request)) {

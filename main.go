@@ -1,8 +1,8 @@
 package main
 
 import (
-	app "github.com/hashi7412/restfulapi-with-gorm-and-gorillamux/api"
-	config "github.com/hashi7412/restfulapi-with-gorm-and-gorillamux/api"
+	"github.com/hashi7412/restapi/api/app"
+	"github.com/hashi7412/restapi/api/config"
 )
 
 func main() {

@@ -1,10 +1,16 @@
-module github.com/hashi7412/restfulapi-with-gorm-and-gorillamux
+module restapi
 
 go 1.20
 
 require (
-	github.com/go-sql-driver/mysql v1.7.1 // indirect
-	github.com/gorilla/mux v1.8.0 // indirect
-	github.com/jinzhu/gorm v1.9.16 // indirect
+	github.com/gorilla/mux v1.8.0
+	github.com/hashi7412/restfulapi-with-gorm-and-gorillamux v0.0.0-20230727193533-962ea2dd12b1
+	github.com/jinzhu/gorm v1.9.16
+	honnef.co/go/tools v0.4.3
+)
+
+require (
+	github.com/BurntSushi/toml v1.2.1 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
+	golang.org/x/tools v0.4.1-0.20221208213631-3f74d914ae6d // indirect
 )

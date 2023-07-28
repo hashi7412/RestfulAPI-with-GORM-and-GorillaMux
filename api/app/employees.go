@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/api/app/model"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 )
@@ -11,7 +12,7 @@ import (
 func GetAllEmployees(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	employees := []model.Employee{}
 	db.Find(&employees)
-	respondJson(w, http.StatusOK, employees)
+	respondJSON(w, http.StatusOK, employees)
 }
 
 func CreateEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -26,8 +27,9 @@ func CreateEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 
 	if err := db.Save(&employee).Error; err != nil {
 		respondError(w, http.StatusInternalServerError, err.Error())
+		return
 	}
-	respondJson(w, http.StatusCreated, employee)
+	respondJSON(w, http.StatusCreated, employee)
 }
 
 func GetEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -38,7 +40,7 @@ func GetEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	if employee == nil {
 		return
 	}
-	respondJson(w, http.StatusOK, employee)
+	respondJSON(w, http.StatusOK, employee)
 }
 
 func UpdateEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -61,7 +63,7 @@ func UpdateEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		respondError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondJson(w, http.StatusOK, employee)
+	respondJSON(w, http.StatusOK, employee)
 }
 
 func DeleteEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -76,7 +78,7 @@ func DeleteEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		respondError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondJson(w, http.StatusNoContent, nil)
+	respondJSON(w, http.StatusNoContent, nil)
 }
 
 func DisableEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -92,7 +94,7 @@ func DisableEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		respondError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondJson(w, http.StatusOK, employee)
+	respondJSON(w, http.StatusOK, employee)
 }
 
 func EnableEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -108,7 +110,7 @@ func EnableEmployee(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		respondError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	respondJson(w, http.StatusOK, employee)
+	respondJSON(w, http.StatusOK, employee)
 }
 
 func getEmployeeOr404(db *gorm.DB, name string, w http.ResponseWriter, r *http.Request) *model.Employee {

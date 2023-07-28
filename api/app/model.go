@@ -2,13 +2,15 @@ package model
 
 import (
 	"github.com/jinzhu/gorm"
+
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 type Employee struct {
 	gorm.Model
 	Name   string `gorm:"unique" json:"name"`
 	City   string `json:"city"`
-	Age    intt   `json:"age"`
+	Age    int    `json:"age"`
 	Status bool   `json:"status"`
 }
 

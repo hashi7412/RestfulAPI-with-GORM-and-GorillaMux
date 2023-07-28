@@ -5,10 +5,11 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/api/app/handler"
+	"github.com/api/app/model"
+	"github.com/api/config"
 	"github.com/gorilla/mux"
-	handler "github.com/hashi7412/restfulapi-with-gorm-and-gorillamux/api/app"
 	"github.com/jinzhu/gorm"
-	"honnef.co/go/tools/config"
 )
 
 type App struct {
@@ -17,13 +18,11 @@ type App struct {
 }
 
 func (a *App) Initialize(config *config.Config) {
-	dbURI := fmt.Sprintf(
-		"%s:%s@/%s?charset=%s&parseTime=True",
+	dbURI := fmt.Sprintf("%s:%s@/%s?charset=%s&parseTime=True",
 		config.DB.Username,
 		config.DB.Password,
 		config.DB.Name,
-		config.DB.Charset,
-	)
+		config.DB.Charset)
 
 	db, err := gorm.Open(config.DB.Dialect, dbURI)
 	if err != nil {
@@ -43,6 +42,14 @@ func (a *App) setRouters() {
 	a.Delete("/employees/{title}", a.DeleteEmployee)
 	a.Put("/employees/{title}/disable", a.DisableEmployee)
 	a.Put("/employees/{title}/enable", a.EnableEmployee)
+}
+
+func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {
+	a.Router.HandleFunc(path, f).Methods("GET")
+}
+
+func (a *App) Post(path string, f func(w http.ResponseWriter, r *http.Request)) {
+	a.Router.HandleFunc(path, f).Methods("POST")
 }
 
 func (a *App) Put(path string, f func(w http.ResponseWriter, r *http.Request)) {

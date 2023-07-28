@@ -4,7 +4,6 @@ go 1.20
 
 require (
 	github.com/gorilla/mux v1.8.0
-	github.com/restfulapi-with-gorm-and-gorillamux v0.0.0-20230727193533-962ea2dd12b1
 	github.com/jinzhu/gorm v1.9.16
 	honnef.co/go/tools v0.4.3
 )

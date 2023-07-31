@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/api/app"
-	"github.com/api/config"
+	app "restapi/api"
+	config "restapi/api"
 )
 
 func main() {

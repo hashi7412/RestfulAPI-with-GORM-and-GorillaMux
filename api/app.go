@@ -5,11 +5,11 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/api/app/handler"
-	"github.com/api/app/model"
-	"github.com/api/config"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
+
+	config "restapi/api"
+	handler "restapi/api/app"
 )
 
 type App struct {

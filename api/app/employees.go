@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/api/app/model"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
+
+	model "restapi/api/app"
 )
 
 func GetAllEmployees(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
